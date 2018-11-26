@@ -1,0 +1,14 @@
+{
+  "name": "storybook-store-decorator",
+  "version": "1.0.0",
+  "description": "Provide a store decorator for storybookjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mario Jäckle <mario@verkstedt.com>",
+  "license": "ISC",
+  "dependencies": {
+    "store": "^2.0.12"
+  }
+}
