@@ -1,9 +1,8 @@
-import { useStoreWith, withStoreDecorator } from './decorator'
-import { getProp } from './store'
+const { useStoreWith, withStoreDecorator } = require('./decorator')
+const { getProp } = require('./store')
 
-export {
+module.exports = {
+  withStoreDecorator,
   useStoreWith,
   getProp
 }
-
-export default withStoreDecorator

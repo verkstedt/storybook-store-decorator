@@ -1,4 +1,4 @@
-import store from 'store'
+const store = require('store')
 
 const GLOBAL_STORE_KEY = 'globalStore'
 const SCOPE_STORE_KEY = 'scopeStore'
@@ -8,7 +8,7 @@ let activeStoreKey = GLOBAL_STORE_KEY
 /**
  * debug function
  */
-export const logStore = () => console.log(activeStoreKey, getStore(activeStoreKey))
+const logStore = () => console.log(activeStoreKey, getStore(activeStoreKey))
 
 /**
  * extends a base store and activates this store for the current scope
@@ -16,7 +16,7 @@ export const logStore = () => console.log(activeStoreKey, getStore(activeStoreKe
  *                 and set as new scope store
  * @param {bool}  reset emptys the active store before use
  */
-export const useActiveStore = (props = null, reset = false) => {
+const useActiveStore = (props = null, reset = false) => {
 
   if (reset) {
     setStore(SCOPE_STORE_KEY, props)
@@ -35,7 +35,7 @@ export const useActiveStore = (props = null, reset = false) => {
  *                 and set as new scope store
  * @param {bool}  reset emptys the global store before use
  */
-export const useGlobalStore = (props = null, reset = false) => {
+const useGlobalStore = (props = null, reset = false) => {
   const storeAction = reset ? setStore : addProp
   storeAction(GLOBAL_STORE_KEY, props)
   activeStoreKey = GLOBAL_STORE_KEY
@@ -73,4 +73,10 @@ const addProp = (storeKey, props) => {
  * get the values for a given key out of the active store
  * @param {string} propName
  */
-export const getProp = propName => getStore(activeStoreKey)[propName]
+const getProp = propName => getStore(activeStoreKey)[propName]
+
+module.exports = {
+  useGlobalStore,
+  useActiveStore,
+  getProp
+}

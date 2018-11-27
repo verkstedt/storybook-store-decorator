@@ -1,4 +1,4 @@
-import { useGlobalStore, useActiveStore } from './store'
+const { useGlobalStore, useActiveStore } = require('./store')
 
 /**
  * store connectorfor use in individual stories
@@ -11,7 +11,7 @@ import { useGlobalStore, useActiveStore } from './store'
  * @param {bool}   storeRequest.reset Setting this to true will empty the used store before merging
  *                 new values. This values will be the new base of the current scope [global]
  */
-export const useStoreWith = ({
+const useStoreWith = ({
   props = null,
   globalStore = false,
   reset = false
@@ -31,7 +31,7 @@ export const useStoreWith = ({
  * @param {bool}   storeRequest.reset Setting this to true will empty the used store before merging
  *                 new values. This values will be the new base of the current scope [global]
  */
-export const withStoreDecorator = ({
+const withStoreDecorator = ({
   props = null,
   globalStore = false,
   reset = false
@@ -42,4 +42,9 @@ export const withStoreDecorator = ({
     reset
   })
   return story()
+}
+
+module.exports = {
+  withStoreDecorator,
+  useStoreWith
 }
