@@ -11,6 +11,16 @@ let activeStoreKey = GLOBAL_STORE_KEY
 const logStore = () => console.log(activeStoreKey, getStore(activeStoreKey))
 
 /**
+ * debug function
+ */
+const setActiveStoreKey = key => {
+  if (key) {
+    activeStoreKey = key
+  }
+}
+const getActiveStoreKey = () => activeStoreKey
+
+/**
  * extends a base store and activates this store for the current scope
  * @param {Object} props properties which will be merged into the current scope store
  *                 and set as new scope store
@@ -21,13 +31,13 @@ const useActiveStore = (props = null, reset = false) => {
   if (reset) {
     setStore(SCOPE_STORE_KEY, props)
   } else {
-    const baseStoreProps = getStore(activeStoreKey)
+    const baseStoreProps = getStore(getActiveStoreKey())
 
     setStore(SCOPE_STORE_KEY, baseStoreProps)
     addProp(SCOPE_STORE_KEY, props)
   }
 
-  activeStoreKey = SCOPE_STORE_KEY
+  setActiveStoreKey(SCOPE_STORE_KEY)
 }
 /**
  * extends the global store and activates this store for the current scope
@@ -38,14 +48,20 @@ const useActiveStore = (props = null, reset = false) => {
 const useGlobalStore = (props = null, reset = false) => {
   const storeAction = reset ? setStore : addProp
   storeAction(GLOBAL_STORE_KEY, props)
-  activeStoreKey = GLOBAL_STORE_KEY
+  setActiveStoreKey(GLOBAL_STORE_KEY)
 }
 
 /**
  * get all stored values for a store
  * @param {string} storeKey the key for the desired store
  */
-const getStore = storeKey => store.get(storeKey)
+const getStore = storeKey => {
+  try {
+    return store.get(storeKey)
+  } catch (err) {
+    throw new Error(err)
+  }
+}
 
 /**
  * set the value of a store
@@ -53,7 +69,11 @@ const getStore = storeKey => store.get(storeKey)
  * @param {Object} props the values to set
  */
 const setStore = (storeKey, props) => {
-  store.set(storeKey, props)
+  try {
+    store.set(storeKey, props)
+  } catch (err) {
+    throw new Error(err)
+  }
 }
 
 /**
@@ -62,21 +82,24 @@ const setStore = (storeKey, props) => {
  * @param {*}      props the values to merge
  */
 const addProp = (storeKey, props) => {
-  if (!props) {
+  if (!props || typeof props !== 'object' || Array.isArray(props)) {
     return
   }
+
   const newProps = Object.assign({}, getStore(storeKey), props)
-  store.set(storeKey, newProps)
+  setStore(storeKey, newProps)
 }
 
 /**
  * get the values for a given key out of the active store
  * @param {string} propName
  */
-const getProp = propName => getStore(activeStoreKey)[propName]
+const getProp = propName => getStore(getActiveStoreKey())[propName]
 
 module.exports = {
   useGlobalStore,
   useActiveStore,
-  getProp
+  getProp,
+  setActiveStoreKey,
+  getActiveStoreKey
 }
