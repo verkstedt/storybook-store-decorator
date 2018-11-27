@@ -1,7 +1,7 @@
 import { useStoreWith, withStoreDecorator } from './decorator'
 import { getProp } from './store'
 
-export const {
+export {
   useStoreWith,
   getProp
 }

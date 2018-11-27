@@ -1,4 +1,4 @@
-import { useGlobalStore, useActiveStore, logStore } from './store'
+import { useGlobalStore, useActiveStore } from './store'
 
 /**
  * store connectorfor use in individual stories
