@@ -4,11 +4,14 @@
   "description": "Provide a store decorator for storybookjs",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "yarn jest"
   },
   "author": "Mario Jäckle <mario@verkstedt.com>",
   "license": "MIT",
   "dependencies": {
     "store": "^2.0.12"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
   }
 }
