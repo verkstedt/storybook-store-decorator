@@ -1,6 +1,6 @@
 {
   "name": "@verkstedt/storybook-store-decorator",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Provide a store decorator for storybookjs",
   "main": "src/index.js",
   "scripts": {
