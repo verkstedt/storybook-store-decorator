@@ -1,5 +1,5 @@
 {
-  "name": "storybook-store-decorator",
+  "name": "@verkstedt/storybook-store-decorator",
   "version": "1.0.0",
   "description": "Provide a store decorator for storybookjs",
   "main": "src/index.js",
