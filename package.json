@@ -4,7 +4,8 @@
   "description": "Provide a store decorator for storybookjs",
   "main": "src/index.js",
   "scripts": {
-    "test": "yarn jest"
+    "test": "yarn jest",
+    "build": "yarn babel src -d dist"
   },
   "author": "Mario Jäckle <mario@verkstedt.com>",
   "license": "MIT",
@@ -12,6 +13,8 @@
     "store": "^2.0.12"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "jest": "^23.6.0"
   }
 }
