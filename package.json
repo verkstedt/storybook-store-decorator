@@ -1,9 +1,11 @@
 {
   "name": "@verkstedt/storybook-store-decorator",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Provide a store decorator for storybookjs",
   "main": "dist/index.js",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "test": "yarn jest",
     "build": "babel src -d dist --no-babelrc --presets=@babel/preset-env --ignore \"src/**/*.test.js\""
